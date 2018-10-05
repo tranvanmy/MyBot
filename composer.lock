@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "46c9f64c2c181f2e419207281526d91d",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2358,6 +2358,39 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "wataridori/chatwork-sdk",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wataridori/chatwork-sdk.git",
+                "reference": "5ecc834f0a2d2e65f103e27282544c7f7b3e81c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wataridori/chatwork-sdk/zipball/5ecc834f0a2d2e65f103e27282544c7f7b3e81c7",
+                "reference": "5ecc834f0a2d2e65f103e27282544c7f7b3e81c7",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "wataridori\\ChatworkSDK\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Tran Duc Thang",
+                    "email": "thangtd90@gmail.com"
+                }
+            ],
+            "description": "Just a non-official SDK for Chatwork",
+            "time": "2018-06-21T06:04:52+00:00"
         }
     ],
     "packages-dev": [
