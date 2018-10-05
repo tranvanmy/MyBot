@@ -17,6 +17,10 @@ class WebhookController extends Controller
         '(songphi' => 'kick',
         '(hi)' => 'hi',
         '(hello)' => 'hi',
+        '(kill' => 'kill',
+        '(okgun)' =>  'kill',
+        '(gietno' => 'kill',
+        '(ngu)' => 'slap',
     ];
 
     /**

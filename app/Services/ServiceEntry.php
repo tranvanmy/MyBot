@@ -7,6 +7,7 @@ use App\Services\Types\SlapService;
 use App\Services\Types\PunchService;
 use App\Services\Types\KickService;
 use App\Services\Types\HiService;
+use App\Services\Types\KillService;
 
 class ServiceEntry
 {
@@ -24,6 +25,9 @@ class ServiceEntry
                 break;
             case 'hi':
                 return new HiService;
+                break;
+            case 'kill':
+                return new KillService;
                 break;
             default:
                 return new DefaultService;
