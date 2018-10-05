@@ -1,0 +1,86 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: 7896/civ3-workspace:2.0
+    steps:
+      - checkout
+      - run:
+          name: Copying .env file
+          command: |
+            cp .env.example .env
+
+      # composer cache
+      - restore_cache:
+          keys:
+            - vendor-v1-{{ checksum "composer.lock" }}
+      - run:
+          name: Installing vendor package
+          command: |
+            composer install
+      - save_cache:
+          key: vendor-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+
+      # run
+      - run:
+          name: Generating app key
+          command: |
+            php artisan key:generate
+      - run:
+          name: Running test
+          command: |
+            framgia-ci run --local
+      - run:
+          name: Sending notification
+          when: on_fail
+          command: |
+            if [[ true ]];  then
+              curl -X POST -H "X-ChatWorkToken: $CHATWORK_TOKEN" -d \
+                "body=[info][title]Build $CIRCLE_BUILD_NUM - FAIL[/title]
+                Repo: $CIRCLE_PROJECT_REPONAME
+                Author: $CIRCLE_USERNAME
+                Branch: $CIRCLE_BRANCH
+                Commit ID: $CIRCLE_SHA1
+                [/info]" \
+                "https://api.chatwork.com/v2/rooms/$CHATWORK_ROOM_ID/messages"
+            fi
+      - run:
+          name: Sending notification
+          when: on_success
+          command: |
+            if [[ true ]];  then
+              curl -X POST -H "X-ChatWorkToken: $CHATWORK_TOKEN" -d \
+                "body=[info][title]Build $CIRCLE_BUILD_NUM - SUCCESS[/title]
+                Repo: $CIRCLE_PROJECT_REPONAME
+                Author: $CIRCLE_USERNAME
+                Branch: $CIRCLE_BRANCH
+                Commit ID: $CIRCLE_SHA1
+                [/info]" \
+                "https://api.chatwork.com/v2/rooms/$CHATWORK_ROOM_ID/messages"
+            fi
+
+  #Run deploy to dev server
+  deploy-dev:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - build
+      - deploy-dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - develop

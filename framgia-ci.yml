@@ -1,0 +1,12 @@
+project_type: php
+test:
+  phpcs:
+    ignore: false
+    command:
+      - phpcs --standard=Framgia --encoding=utf-8 --report-checkstyle=.framgia-ci-reports/phpcs.xml app
+  phpunit:
+    ignore: false
+    command:
+      - php -dzend_extension=xdebug.so vendor/bin/phpunit
+        --coverage-clover=.framgia-ci-reports/coverage-clover.xml
+        --coverage-html=.framgia-ci-reports/coverage
