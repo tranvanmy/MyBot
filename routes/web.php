@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function() {
-    return view('index');
+    return view('welcome');
 });
 Route::post('webhook/chatwork', 'WebhookController@handleEvent');
