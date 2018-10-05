@@ -3,4 +3,4 @@ test:
   phpcs:
     ignore: false
     command:
-      - phpcs --standard=Framgia --encoding=utf-8 --report-checkstyle=.framgia-ci-reports/phpcs.xml app
+      - phpcs --standard=Framgia --encoding=utf-8 app
