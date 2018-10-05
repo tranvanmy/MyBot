@@ -83,4 +83,4 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - master
