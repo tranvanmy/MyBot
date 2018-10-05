@@ -12,14 +12,14 @@ class WebhookController extends Controller
 {
 
     protected $supportType = [
-        '(tat' => 'slap',
-        '(dam' => 'punch',
-        '(songphi' => 'kick',
-        '(hi)' => 'hi',
-        '(hello)' => 'hi',
-        '(kill' => 'kill',
+        'tat' => 'slap',
+        'dam' => 'punch',
+        'songphi' => 'kick',
+        '(hi' => 'hi',
+        'hello' => 'hi',
+        'kill' => 'kill',
         '(okgun)' => 'kill',
-        '(gietno' => 'kill',
+        'gietno' => 'kill',
         '(ngu)' => 'slap',
     ];
 
