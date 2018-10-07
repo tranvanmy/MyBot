@@ -11,16 +11,38 @@ use wataridori\ChatworkSDK\ChatworkRoom;
 class WebhookController extends Controller
 {
 
-    protected $supportType = [
+    protected $supportName = [
         'tat' => 'slap',
+        'ngu' => 'slap',
         'dam' => 'punch',
         'songphi' => 'kick',
-        '(hi' => 'hi',
+        'da' => 'kick',
+        'hi' => 'hi',
         'hello' => 'hi',
+        'hey' => 'hi',
         'kill' => 'kill',
-        '(okgun)' => 'kill',
-        'gietno' => 'kill',
-        '(ngu)' => 'slap',
+        'giet' => 'kill',
+        '?' => 'confuse',
+        'haha' => 'smile',
+        'hihi' => 'smile',
+        'hoho' => 'smile',
+        'hehe' => 'smile',
+        'ahaha' => 'smile',
+        'ahihi' => 'smile',
+        'clap' => 'clap',
+        'vỗ tay' => 'clap',
+        'votay' => 'clap',
+        'dance' => 'dance',
+        'nhay' => 'dance',
+        'nhảy' => 'dance',
+        'party' => 'dance',
+        'love' => 'love',
+        'yeu' => 'love',
+        'yêu' => 'love',
+        'thuong' => 'love',
+        'thương' => 'love',
+        'hon' => 'love',
+        'hôn' => 'love',
     ];
 
     /**
@@ -36,8 +58,8 @@ class WebhookController extends Controller
 
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
-        $type = $this->getServiceType($message);
-        $response = ServiceEntry::type($type)
+        $name = $this->getServiceName($message);
+        $response = ServiceEntry::service('emo', $name)
             ->createResponse([
                 'roomId' => $roomId,
                 'userId' => $fromId,
@@ -75,17 +97,17 @@ class WebhookController extends Controller
      *
      * @return string
      */
-    protected function getServiceType($message)
+    protected function getServiceName($message)
     {
-        $type = '?';
-        foreach ($this->supportType as $key => $value) {
+        $name = '?';
+        foreach ($this->supportName as $key => $value) {
             if (strpos($message, $key)) {
-                $type = $value;
+                $name = $value;
                 break;
             }
         }
 
-        return $type;
+        return $name;
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Types;
+namespace App\Services\Types\Emo;
 
-use App\Services\Types\Service;
+use App\Services\Types\Emo\Service;
 
 class KillService extends Service
 {
@@ -11,5 +11,6 @@ class KillService extends Service
         '(sohai1)',
         '(sohai2)',
         '(sohai3)',
+        '(why)',
     ];
 }
