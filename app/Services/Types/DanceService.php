@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Types\Emo;
+namespace App\Services\Types;
 
-use App\Services\Types\Emo\Service;
+use App\Services\Types\Service;
 
 class DanceService extends Service
 {

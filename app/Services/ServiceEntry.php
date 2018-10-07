@@ -7,9 +7,9 @@ class ServiceEntry
     /**
      * Entry point
      */
-    public static function service($type, $name)
+    public static function service($name)
     {
-        return self::getService($type, $name);
+        return self::getService($name);
     }
 
     /**
@@ -20,22 +20,14 @@ class ServiceEntry
      *
      * @return class
      */
-    public static function getService($type, $name)
+    public static function getService($name)
     {
-        switch ($type) {
-            case 'emo':
-                $namespace = '\App\\Services\\Types\\Emo\\';
-                break;
-            default:
-                $namespace = '\App\\Services\\Types\\Emo\\';
-                break;
-        }
-
+        $namespace = '\App\\Services\\Types\\';
         $className = ucfirst(strtolower($name));
         $serviceClass = $namespace . $className . 'Service';
         if (class_exists($serviceClass)) {
             return new $serviceClass;
         }
-        return new \App\Services\Types\Emo\DefaultService;
+        return new \App\Services\Types\DefaultService;
     }
 }

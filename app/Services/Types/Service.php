@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Types\Emo;
+namespace App\Services\Types;
 
 abstract class Service
 {

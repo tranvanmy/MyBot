@@ -43,6 +43,7 @@ class WebhookController extends Controller
         'thương' => 'love',
         'hon' => 'love',
         'hôn' => 'love',
+        '{weather}' => 'weather',
     ];
 
     /**
@@ -59,7 +60,7 @@ class WebhookController extends Controller
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
-        $response = ServiceEntry::service('emo', $name)
+        $response = ServiceEntry::service($name)
             ->createResponse([
                 'roomId' => $roomId,
                 'userId' => $fromId,
