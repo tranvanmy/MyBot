@@ -12,15 +12,15 @@ class WebhookController extends Controller
 {
 
     protected $supportName = [
-        'tat' => 'slap',
-        'ngu' => 'slap',
-        'dam' => 'punch',
-        'songphi' => 'kick',
-        'da' => 'kick',
-        'hi' => 'hi',
-        'hello' => 'hi',
+        '(tat' => 'slap',
+        '(ngu' => 'slap',
+        '(dam' => 'punch',
+        '(songphi' => 'kick',
+        '(da' => 'kick',
+        '(hi)' => 'hi',
+        '(hello)' => 'hi',
         'hey' => 'hi',
-        'kill' => 'kill',
+        '(kill' => 'kill',
         'giet' => 'kill',
         '?' => 'confuse',
         'haha' => 'smile',

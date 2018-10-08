@@ -14,5 +14,9 @@ class DanceService extends Service
         '(dance6)',
         '(dance7)',
         '(dance8)',
+        '(dance9)',
+        '(dance10)',
+        '(dance-with-me)',
+        '(patat-dance)',
     ];
 }

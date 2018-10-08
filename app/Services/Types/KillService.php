@@ -12,5 +12,11 @@ class KillService extends Service
         '(sohai2)',
         '(sohai3)',
         '(why)',
+        '(danhnhau)',
+        '(danhnhau2)',
+        '(cocdau)',
+        '(dangso)',
+        '(deso)',
+        '(soquaco)',
     ];
 }

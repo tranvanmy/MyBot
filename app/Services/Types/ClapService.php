@@ -10,5 +10,8 @@ class ClapService extends Service
         '(clap2)',
         '(clap3)',
         '(clap4)',
+        '(clap5)',
+        '(votay)',
+        '(votay2)',
     ];
 }

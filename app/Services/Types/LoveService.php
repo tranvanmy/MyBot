@@ -12,5 +12,11 @@ class LoveService extends Service
         '(love3)',
         '(love4)',
         '(yeah)',
+        '(love5)',
+        '(love6)',
+        '(lovely)',
+        '(love-you)',
+        '(kiss)',
+        '(kiss2)',
     ];
 }

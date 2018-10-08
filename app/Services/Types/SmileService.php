@@ -11,6 +11,9 @@ class SmileService extends Service
         '(haha)',
         '(haha2)',
         '(haha3)',
+        '(hahadeu)',
+        '(haha5)',
+        '(haha6)',
         '(hahaha)',
         '(ahaha)',
         '(ahaha2)',
@@ -20,5 +23,10 @@ class SmileService extends Service
         '(fank)',
         '(ahaha3)',
         '(ahaha4)',
+        '(ahihi)',
+        '(ahihihi)',
+        '(ahaha4)',
+        '(smile)',
+        '(smile2)',
     ];
 }
