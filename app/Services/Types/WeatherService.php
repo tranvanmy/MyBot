@@ -16,7 +16,7 @@ class WeatherService
         extract($data);
 
         return "[rp aid=$userId to=$roomId-$messId]\n"
-            . "Nhiệt độ hiện tại là: $temperature độ C - $desc";
+            . "Nhiệt độ hiện tại: $temperature độ C - $desc";
     }
 
     /**
