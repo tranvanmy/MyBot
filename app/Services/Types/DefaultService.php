@@ -20,5 +20,6 @@ class DefaultService extends Service
         '(idontknow)',
         '(idontcare)',
         '(cuoituthien)',
+        '(doanxem)',
     ];
 }
