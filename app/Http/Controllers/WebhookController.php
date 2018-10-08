@@ -45,6 +45,9 @@ class WebhookController extends Controller
         'hon' => 'love',
         'hôn' => 'love',
         '{weather}' => 'weather',
+        'đẹp trai' => 'beauty',
+        'xinh' => 'beauty',
+        'handsome' => 'beauty',
     ];
 
     /**
