@@ -14,6 +14,7 @@ class WebhookController extends Controller
     protected $supportName = [
         '(tat' => 'slap',
         '(ngu' => 'slap',
+        'điên' => 'slap',
         '(dam' => 'punch',
         '(boxing' => 'punch',
         '(songphi' => 'kick',
