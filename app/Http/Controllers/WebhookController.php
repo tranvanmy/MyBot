@@ -15,6 +15,7 @@ class WebhookController extends Controller
         '(tat' => 'slap',
         '(ngu' => 'slap',
         '(dam' => 'punch',
+        '(boxing' => 'punch',
         '(songphi' => 'kick',
         '(da' => 'kick',
         '(hi)' => 'hi',
