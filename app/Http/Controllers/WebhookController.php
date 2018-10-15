@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ServiceEntry;
 use wataridori\ChatworkSDK\ChatworkSDK;
-use wataridori\ChatworkSDK\ChatworkApi;
 use wataridori\ChatworkSDK\ChatworkRoom;
 
 class WebhookController extends Controller
