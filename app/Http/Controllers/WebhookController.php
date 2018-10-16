@@ -44,10 +44,11 @@ class WebhookController extends Controller
         ' thương ' => 'love',
         ' hon ' => 'love',
         ' hôn ' => 'love',
-        '{weather}' => 'weather',
         ' đẹp trai ' => 'beauty',
         ' xinh ' => 'beauty',
         'handsome' => 'beauty',
+        '{weather}' => 'weather',
+        '{map}' => 'map',
     ];
 
     /**
