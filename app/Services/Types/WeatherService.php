@@ -28,10 +28,8 @@ class WeatherService
     {
         try {
             $weatherApi = new OpenWeatherMap(env('OPEN_WEATHER_API_KEY'));
-            // $weather = $weatherApi->getWeather('Hanoi', 'metric', 'vi');
-            $weather = $weatherApi->getRawDailyForecastData('Hanoi', 'metric', 'vi', env('OPEN_WEATHER_API_KEY'),'json');
-            // dd(json_encode($weather));
-            dd($weather);
+            $weather = $weatherApi->getWeather('Hanoi', 'metric', 'vi');
+
             return [
                 'temperature' => $weather->temperature->getValue(),
                 'desc' => ucfirst(strtolower($weather->clouds->getDescription())),
