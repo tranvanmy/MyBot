@@ -62,15 +62,10 @@ class WebhookController extends Controller
     ];
 
     protected $fight = [
-        '(tat',
-        'ngu',
-        ' điên ',
-        '(dam',
-        '(boxing',
-        '(songphi',
-        '(da',
-        '(kill',
-        'giet',
+        'slap',
+        'punch',
+        'kick',
+        'kill',
     ];
 
     /**
