@@ -49,7 +49,10 @@ class WebhookController extends Controller
         'handsome' => 'beauty',
         '{weather}' => 'weather',
         '{map}' => 'map',
+        'vwd' => 'vwd'
     ];
+
+    protected $special = [2847031, 1979508, 3081461, 1749245, 2670763, 2611547];
 
     /**
      * Handle webhook event from chatwork
@@ -65,12 +68,21 @@ class WebhookController extends Controller
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
-        $response = ServiceEntry::service($name)
-            ->createResponse([
-                'roomId' => $roomId,
-                'userId' => $fromId,
-                'messId' => $messageId,
-            ]);
+        if (in_array($fromId, $this->special)) {
+            $response = ServiceEntry::service('vwd')
+                ->createResponse([
+                    'roomId' => $roomId,
+                    'userId' => $fromId,
+                    'messId' => $messageId,
+                ]);
+        } else {
+            $response = ServiceEntry::service($name)
+                ->createResponse([
+                    'roomId' => $roomId,
+                    'userId' => $fromId,
+                    'messId' => $messageId,
+                ]);
+        }
 
         // Send response
         $this->sendResponse($response, $roomId);
