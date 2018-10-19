@@ -61,6 +61,18 @@ class WebhookController extends Controller
         2611547,
     ];
 
+    protected $fight = [
+        '(tat',
+        'ngu',
+        ' điên ',
+        '(dam',
+        '(boxing',
+        '(songphi',
+        '(da',
+        '(kill',
+        'giet',
+    ];
+
     /**
      * Handle webhook event from chatwork
      */
@@ -75,7 +87,9 @@ class WebhookController extends Controller
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
-        if (in_array($fromId, $this->special)) {
+        if (in_array($fromId, $this->special)
+            && in_array($name, $this->fight)
+        ) {
             $response = ServiceEntry::service('vwd')
                 ->createResponse([
                     'roomId' => $roomId,
