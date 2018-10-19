@@ -52,7 +52,14 @@ class WebhookController extends Controller
         'vwd' => 'vwd'
     ];
 
-    protected $special = [2847031, 1979508, 3081461, 1749245, 2670763, 2611547];
+    protected $special = [
+        2847031,
+        1979508,
+        3081461,
+        1749245,
+        2670763,
+        2611547,
+    ];
 
     /**
      * Handle webhook event from chatwork
