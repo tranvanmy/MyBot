@@ -49,7 +49,7 @@ class WebhookController extends Controller
         'handsome' => 'beauty',
         '{weather}' => 'weather',
         '{map}' => 'map',
-        'vwd' => 'vwd'
+        'vwd' => 'vwd',
     ];
 
     protected $special = [
