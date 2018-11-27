@@ -7,7 +7,7 @@ use App\Services\Types\Service;
 class DefaultService extends Service
 {
     protected $option = [
-        '(doge)',
+        ':doge:',
         '(smoking)(phe)(phe2)',
         '(???)',
         '(seriously?)',
