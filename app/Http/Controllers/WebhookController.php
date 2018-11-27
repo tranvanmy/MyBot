@@ -50,6 +50,13 @@ class WebhookController extends Controller
         'handsome' => 'beauty',
         '{weather}' => 'weather',
         '{map}' => 'map',
+        '{welcome:' => 'welcome',
+        '{tát:' => 'slapper',
+    ];
+
+    protected $adminCommand = [
+        'welcome',
+        'slapper',
     ];
 
     /**
@@ -66,13 +73,22 @@ class WebhookController extends Controller
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
-        $response = ServiceEntry::service($name)
-            ->createResponse([
-                'roomId' => $roomId,
-                'userId' => $fromId,
-                'messId' => $messageId,
-            ]);
-
+        logger($name);
+        logger($fromId == env('ADMIN_CW_ID'));
+        if (in_array($name, $this->adminCommand) && $fromId == env('ADMIN_CW_ID')) {
+            $response = ServiceEntry::service($name)
+                ->createResponse([
+                    'roomId' => $roomId,
+                    'msg' => $message,
+                ]);
+        } else {
+            $response = ServiceEntry::service($name)
+                ->createResponse([
+                    'roomId' => $roomId,
+                    'userId' => $fromId,
+                    'messId' => $messageId,
+                ]);
+        }
         // Send response
         $this->sendResponse($response, $roomId);
     }

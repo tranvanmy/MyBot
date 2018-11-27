@@ -20,6 +20,7 @@ abstract class Service
     {
         $emotion = $this->option[array_rand($this->option)];
         extract($data);
+
         return "[rp aid=$userId to=$roomId-$messId]\n $emotion";
     }
 }
