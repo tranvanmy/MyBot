@@ -24,11 +24,13 @@ class SlapperService extends AdminService
         $targetUserId = $this->extractUserId($msg);
 
         if (!$targetUserId) {
-            return '[To:' .  $fromId . ']' . PHP_EOL
-            . ' (kidding?)';
+            return '[To:' . $fromId . ']' . PHP_EOL
+                . ' (kidding?)';
         }
 
-        if ($targetUserId != env('ADMIN_CW_ID')) {
+        if ($targetUserId != env('ADMIN_CW_ID')
+            && $targetUserId != env('HBOT_CW_ID')
+        ) {
             $emotionNo1 = $this->emo[array_rand($this->emo)];
             $emotionNo2 = $this->emo[array_rand($this->emo)];
             $emotionNo3 = $this->emo[array_rand($this->emo)];
@@ -38,7 +40,7 @@ class SlapperService extends AdminService
                 . PHP_EOL
                 . $emotionNo1 . ' ' . $emotionNo2 . ' ' . $emotionNo3;
         } else {
-            return '[To:' .  $fromId . ']' . PHP_EOL
+            return '[To:' . $fromId . ']' . PHP_EOL
                 . ' (nonono)' . PHP_EOL
                 . ' (tat2)';
         }
