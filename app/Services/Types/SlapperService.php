@@ -10,12 +10,17 @@ class SlapperService extends AdminService
     public function createResponse($data)
     {
         extract($data);
-        $targetUserId = $this->extractUserId($msg);
+        if ($fromId == env('ADMIN_CW_ID')) {
+            $targetUserId = $this->extractUserId($msg);
 
-        return '[To:{$targetUserId}] \n'
-            . 'Ê ku !' . PHP_EOL
-            . '(laiday3) ' . PHP_EOL
-            . '\n'
-            . '(tat2) (lengoi) (dam)';
+            return '[To:{$targetUserId}] \n'
+                . 'Ê ku !' . PHP_EOL
+                . '(laiday3) ' . PHP_EOL
+                . '\n'
+                . '(tat2) (lengoi) (dam)';
+        } else {
+            return '[To:{$fromId}] \n'
+                . ' (nonono)';
+        }
     }
 }
