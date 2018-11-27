@@ -13,13 +13,13 @@ class SlapperService extends AdminService
         if ($fromId == env('ADMIN_CW_ID')) {
             $targetUserId = $this->extractUserId($msg);
 
-            return '[To:{$targetUserId}] \n'
+            return '[To:' . $targetUserId . ']' . PHP_EOL
                 . 'Ê ku !' . PHP_EOL
                 . '(laiday3) ' . PHP_EOL
-                . '\n'
+                . PHP_EOL
                 . '(tat2) (lengoi) (dam)';
         } else {
-            return '[To:{$fromId}] \n'
+            return '[To:' .  $fromId . ']' . PHP_EOL
                 . ' (nonono)';
         }
     }
