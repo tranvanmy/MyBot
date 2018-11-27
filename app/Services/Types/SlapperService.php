@@ -29,9 +29,9 @@ class SlapperService extends AdminService
         }
 
         if ($targetUserId != env('ADMIN_CW_ID')) {
-            $emotionNo1 = $this->emo[array_rand($this->option)];
-            $emotionNo2 = $this->emo[array_rand($this->option)];
-            $emotionNo3 = $this->emo[array_rand($this->option)];
+            $emotionNo1 = $this->emo[array_rand($this->emo)];
+            $emotionNo2 = $this->emo[array_rand($this->emo)];
+            $emotionNo3 = $this->emo[array_rand($this->emo)];
 
             return '[To:' . $targetUserId . ']' . PHP_EOL
                 . '(laiday3) ' . PHP_EOL
