@@ -10,6 +10,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "rap2hpoutre/laravel-log-viewer": "^0.22.1",
         "wataridori/chatwork-sdk": "^0.3.0"
     },
     "require-dev": {
