@@ -52,11 +52,13 @@ class WebhookController extends Controller
         '{map}' => 'map',
         '{welcome:' => 'welcome',
         '{tát:' => 'slapper',
+        '{msg:' => 'to',
     ];
 
     protected $adminCommand = [
         'welcome',
         'slapper',
+        'to',
     ];
 
     /**
@@ -80,6 +82,9 @@ class WebhookController extends Controller
                     'roomId' => $roomId,
                     'msg' => $message,
                 ]);
+            if ($name == 'to') {
+                $roomId = env('TEAM_AN_TRUA_FS');
+            }
         } else {
             $response = ServiceEntry::service($name)
                 ->createResponse([
