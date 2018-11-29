@@ -15,6 +15,7 @@ class ToService
         if ($fromId == env('ADMIN_CW_ID')
             || $fromId == env('SUB_ADMIN_CW_ID')
         ) {
+            logger($msg);
             return $content;
         } else {
             return '[To:' . $fromId . ']' . PHP_EOL
