@@ -11,6 +11,11 @@ class WebhookController extends Controller
 {
 
     protected $supportName = [
+        '{weather}' => 'weather',
+        '{map}' => 'map',
+        '{welcome:' => 'welcome',
+        '{tát:' => 'slapper',
+        '{msg:' => 'to',
         '(tat' => 'slap',
         '(ngu' => 'slap',
         ' điên ' => 'slap',
@@ -48,11 +53,6 @@ class WebhookController extends Controller
         ' đẹp trai ' => 'beauty',
         ' xinh ' => 'beauty',
         'handsome' => 'beauty',
-        '{weather}' => 'weather',
-        '{map}' => 'map',
-        '{welcome:' => 'welcome',
-        '{tát:' => 'slapper',
-        '{msg:' => 'to',
     ];
 
     protected $adminCommand = [
