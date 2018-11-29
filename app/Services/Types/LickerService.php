@@ -2,7 +2,7 @@
 
 namespace App\Services\Types;
 
-class SlapperService extends AdminService
+class LickerService extends AdminService
 {
     protected $emo = [
         '(liemmanhinh3)',

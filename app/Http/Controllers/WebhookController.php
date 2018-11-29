@@ -77,7 +77,9 @@ class WebhookController extends Controller
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
+        logger($name);
         if (in_array($name, $this->adminCommand)) {
+            logger('ADMIN');
             $response = ServiceEntry::service($name)
                 ->createResponse([
                     'fromId' => $fromId,
@@ -88,6 +90,7 @@ class WebhookController extends Controller
                 $roomId = env('TEAM_AN_TRUA_FS');
             }
         } else {
+            logger('NORMAL');
             $response = ServiceEntry::service($name)
                 ->createResponse([
                     'roomId' => $roomId,
