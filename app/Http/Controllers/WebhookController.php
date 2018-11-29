@@ -15,6 +15,7 @@ class WebhookController extends Controller
         '{map}' => 'map',
         '{welcome:' => 'welcome',
         '{tát:' => 'slapper',
+        '{liếm:' => 'licker',
         '{msg:' => 'to',
         '(tat' => 'slap',
         '(ngu' => 'slap',
@@ -59,6 +60,7 @@ class WebhookController extends Controller
         'welcome',
         'slapper',
         'to',
+        'licker',
     ];
 
     /**

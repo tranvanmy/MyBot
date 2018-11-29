@@ -9,11 +9,8 @@ class DefaultService extends Service
     protected $option = [
         ':doge:',
         '(smoking)(phe)(phe2)',
-        '(???)',
-        '(seriously?)',
         '(yeah)',
         '(idontcare)',
-        '(cuoituthien)',
         '(doanxem)',
         '(khinhbi2)',
         '(khoamom)',
@@ -21,5 +18,9 @@ class DefaultService extends Service
         '(khenh)',
         '(nom)',
         '(gaidit)',
+        '(xaocho)',
+        '(nhucvl)',
+        '(quyxuong)',
+        '(xl)',
     ];
 }
