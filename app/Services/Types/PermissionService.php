@@ -58,7 +58,6 @@ class PermissionService
     private function sendCongratulations($memberId)
     {
         return '[To:' . $memberId . '] ' . PHP_EOL
-            . 'Chúc mừng bạn đã quay vào ô mất lượt (tangqua)' . PHP_EOL
-            . 'Bạn sẽ bị (khoamom) trong 3h tới !!!';
+            . 'Chúc mừng bạn đã quay vào ô mất lượt (tangqua)';
     }
 }
