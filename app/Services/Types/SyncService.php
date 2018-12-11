@@ -14,7 +14,7 @@ class SyncService
     public function createResponse($data)
     {
         extract($data);
-        if (!$fromId == env('ADMIN_CW_ID')) {
+        if ($fromId != env('ADMIN_CW_ID')) {
             return '[To:' . $fromId . ']' . PHP_EOL
                 . ' (nonono)';
         }

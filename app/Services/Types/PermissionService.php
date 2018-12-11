@@ -10,10 +10,16 @@ use Carbon\Carbon;
 class PermissionService
 {
     /**
-     * Create response message for weather service
+     * Create response message for permission service
      */
     public function createResponse($data)
     {
+        extract($data);
+        if ($fromId != env('ADMIN_CW_ID')) {
+            return '[To:' . $fromId . ']' . PHP_EOL
+                . ' (nonono)';
+        }
+
         $choosenMemberAccId = $this->chooseRandomMember();
         $msg = $this->sendCongratulations($choosenMemberAccId);
 
