@@ -11,7 +11,7 @@ class WebhookController extends Controller
 {
 
     protected $supportName = [
-        '{lock}' => 'permission',
+        '{random}' => 'permission',
         '{sync}' => 'sync',
         '{weather}' => 'weather',
         '{map}' => 'map',
