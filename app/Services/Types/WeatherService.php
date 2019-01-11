@@ -16,7 +16,7 @@ class WeatherService
         extract($data);
 
         return "[rp aid=$userId to=$roomId-$messId]\n"
-            . "Nhiệt độ hiện tại: $temperature độ C - $desc";
+            . "Nhiệt độ Hà Nội hiện tại: $temperature độ C - $desc";
     }
 
     /**
@@ -27,7 +27,7 @@ class WeatherService
     public function getCurrentWeather()
     {
         try {
-            $weatherApi = new OpenWeatherMap(env('OPEN_WEATHER_API_KEY'));
+            $weatherApi = new OpenWeatherMap('62bba70fc64c0b7c79afc83bfe487e63');
             $weather = $weatherApi->getWeather('Hanoi', 'metric', 'vi');
 
             return [

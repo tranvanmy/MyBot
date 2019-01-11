@@ -7,6 +7,6 @@ use App\Services\Types\Service;
 class ConfuseService extends Service
 {
     protected $option = [
-        '(confused)',
+        'Chú nói gì mà hai ae mình hiểu đi (huhu)',
     ];
 }

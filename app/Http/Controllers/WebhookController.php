@@ -56,6 +56,20 @@ class WebhookController extends Controller
         ' đẹp trai ' => 'beauty',
         ' xinh ' => 'beauty',
         'handsome' => 'beauty',
+        'music' => 'music',
+        'anime' => 'anime',
+        'dm' => 'swear',
+        'vl' => 'swear',
+        'fuck' => 'swear',
+        'dmm' => 'swear',
+        'cút' => 'swear',
+        'đù' => 'swear',
+        'lìn' => 'swear',
+        '{gmt}' => 'gmt',
+        'gmt member' => 'member',
+        'gmt workflow' => 'work',
+        'gmt book' => 'book',
+        'gmt staging' => 'staging',
     ];
 
     protected $adminCommand = [
@@ -72,6 +86,8 @@ class WebhookController extends Controller
      */
     public function handleEvent(Request $request)
     {
+        \Log::error($request->all());
+
         // Get evnet infomation
         $webhookEvent = $request->input('webhook_event');
         $roomId = $webhookEvent['room_id'];
@@ -81,6 +97,17 @@ class WebhookController extends Controller
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
+
+        // \Log::error('----------message--------');
+        // \Log::error($message);
+        // \Log::error('----------message-------');
+
+
+        // \Log::error('----------nameService--------');
+        // \Log::error($name);
+        // \Log::error('----------nameService-------');
+        
+
         if (in_array($name, $this->adminCommand)) {
             $response = ServiceEntry::service($name)
                 ->createResponse([
@@ -97,8 +124,13 @@ class WebhookController extends Controller
                     'roomId' => $roomId,
                     'userId' => $fromId,
                     'messId' => $messageId,
+                    'msg' => $message,
                 ]);
         }
+
+        //  \Log::error('----------$response--------');
+        // \Log::error($response);
+        // \Log::error('----------$response-------');
         // Send response
         $this->sendResponse($response, $roomId);
     }
