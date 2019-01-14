@@ -13,7 +13,7 @@ class WelcomeService extends AdminService
         $targetUserId = $this->extractUserId($msg);
 
         return '[To:' . $targetUserId . ']' . PHP_EOL
-            . 'Chào mừng bạn đến với box team ăn trưa FS.'
+            . 'Chào mừng bạn đến với dự án GMT'
             . ' Bạn hãy giới thiệu về tên tuổi, ngày sinh, sở thích, ...'
             . '  để mọi người cùng biết nhé :D';
     }

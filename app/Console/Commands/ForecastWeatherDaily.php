@@ -43,7 +43,7 @@ class ForecastWeatherDaily extends Command
     {
         try {
             // Get weather
-            $weatherApi = new OpenWeatherMap(env('OPEN_WEATHER_API_KEY'));
+            $weatherApi = new OpenWeatherMap('62bba70fc64c0b7c79afc83bfe487e63');
             $forecastWeather = $weatherApi->getRawHourlyForecastData('Hanoi', 'metric', 'vi', '', 'json');
             $forecastWeather = $this->extractTodayWeather($forecastWeather);
 
