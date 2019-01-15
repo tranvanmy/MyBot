@@ -13,10 +13,10 @@ class WebhookController extends Controller
     protected $supportName = [
         '{random}' => 'permission',
         '{sync}' => 'sync',
-        '{weather}' => 'weather',
-        '{map}' => 'map',
-        '{welcome:' => 'welcome',
-        '{tát:' => 'slapper',
+        'weather' => 'weather',
+        'map' => 'map',
+        'welcome:' => 'welcome',
+        'tat:' => 'slapper',
         '{liếm:' => 'licker',
         '{msg:' => 'to',
         '(tat' => 'slap',
@@ -65,11 +65,9 @@ class WebhookController extends Controller
         'cút' => 'swear',
         'đù' => 'swear',
         'lìn' => 'swear',
-        '{gmt}' => 'gmt',
-        'gmt member' => 'member',
-        'gmt workflow' => 'work',
-        'gmt book' => 'book',
-        'gmt staging' => 'staging',
+        'gmt' => 'gmt',
+        'help' => 'help',
+        'vanhoa' => 'member',
     ];
 
     protected $adminCommand = [

@@ -14,14 +14,12 @@ class HelpService
         extract($data);
 
         return "[rp aid=$userId to=$roomId-$messId]\n"
-            . '[info][title]Danh sách những syntax hỗ trợ dự án GMT:[/title](*)gmt member: Link các quyền của member trong dự án.
-(*)gmt workflow: Link đến file workflow của dự án.
-(*)gmt bookmarks: Link đến file Bookmarks của dự án.
-(*)gmt github: Link github dự án.
-(*)gmt gg: Link gg drive của dự án.
-(*)gmt stagging: Link đến serve staging của dự án.
-(*)gmt report: Mẫu báo cáo hàng ngày.
-(*)gmt pull: Mẫu gửi pull
+            . '[info][title]Danh sách những syntax hỗ trợ:[/title](*)music : Sẽ cho chúng ta 1 bài hát ngẫu nhiên giúp giảm căng thẳng
+(*)weather: Sẽ cho chúng ta biết thời tiết hiện tại của Hà Nội
+(*)map: Sẽ cho chúng ta biết được map các phòng họp, và chỗ ngồi của công ty Framgia
+(*)welcome: @To .Bot sẽ  thay mặt ae gửi lời mời cho member mới vào dự án hay box.
+(*)tat: @To .Bot sẽ thay ae tát người cần tát
+(*)vanhoa: Hiện văn hóa của Group ta
             [/info]' . PHP_EOL;
     }
 }

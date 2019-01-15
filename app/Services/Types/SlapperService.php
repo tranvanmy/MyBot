@@ -21,8 +21,16 @@ class SlapperService extends AdminService
     public function createResponse($data)
     {
         extract($data);
+        \Log::error('tat');
+        \Log::error($data);
+        \Log::error('tat');
         $targetUserId = $this->extractUserId($msg);
 
+        if ($targetUserId == '2359460') {
+            return '[To:' . $targetUserId . ']' . PHP_EOL
+                . 'anh ơi thằng'. ' '.'[To:' . $data['fromId'] . ']'  .'kia bảo em đánh anh kìa (huhu)' . PHP_EOL
+                . PHP_EOL;
+        }
         if (!$targetUserId) {
             return '[To:' . $fromId . ']' . PHP_EOL
                 . ' (kidding?)';
