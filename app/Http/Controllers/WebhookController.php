@@ -65,9 +65,11 @@ class WebhookController extends Controller
         'cút' => 'swear',
         'đù' => 'swear',
         'lìn' => 'swear',
+        'pull:' => 'pull',
         'gmt' => 'gmt',
         'help' => 'help',
         'vanhoa' => 'member',
+        'js' => 'js'
     ];
 
     protected $adminCommand = [
@@ -96,16 +98,6 @@ class WebhookController extends Controller
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
 
-        // \Log::error('----------message--------');
-        // \Log::error($message);
-        // \Log::error('----------message-------');
-
-
-        // \Log::error('----------nameService--------');
-        // \Log::error($name);
-        // \Log::error('----------nameService-------');
-        
-
         if (in_array($name, $this->adminCommand)) {
             $response = ServiceEntry::service($name)
                 ->createResponse([
@@ -126,10 +118,6 @@ class WebhookController extends Controller
                 ]);
         }
 
-        //  \Log::error('----------$response--------');
-        // \Log::error($response);
-        // \Log::error('----------$response-------');
-        // Send response
         $this->sendResponse($response, $roomId);
     }
 

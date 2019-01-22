@@ -9,12 +9,12 @@ class GmtService
     {
         extract($data);
 
-        if ($data['roomId'] != '100652541') {
-           return "[rp aid=$userId to=$roomId-$messId]\n"
-            . '[info][title]Permission Denied[/title]
-(*)Đây là tài liệu nội bộ của dự án, nên không thể truy cập ở ngoài box, mong bạn thông cảm (bow)
-            [/info]' . PHP_EOL;
-        }
+//         if ($data['roomId'] != '100652541') {
+//            return "[rp aid=$userId to=$roomId-$messId]\n"
+//             . '[info][title]Permission Denied[/title]
+// (*)Đây là tài liệu nội bộ của dự án, nên không thể truy cập ở ngoài box, mong bạn thông cảm (bow)
+//             [/info]' . PHP_EOL;
+//         }
         
         $reponse = "[rp aid=$userId to=$roomId-$messId]\n"
             . '[info][title]Permission Denied[/title]
@@ -89,10 +89,12 @@ Daily Report
         }
 
         if (strstr($data['msg'], 'gmt pull') == 'gmt pull') {
+            \Log::error($data['msg']);
             $reponse = "[rp aid=$userId to=$roomId-$messId]\n".
             "Mẫu gửi pull của anh đây\n"
-        . '[info][title]Mọi người review giúp em pull này với ạ (bow)[/title](*) Title:
-(*) Link:[/info]'. PHP_EOL;
+        . '[To:2343554]  [To:3401308] [To:3401286] [To:3542580] [To:3543924] [To:3330082] 
+[info][title]Mọi người review giúp mình pull này với (bow)[/title](*) Title:
+(*) Link: [/info]'. PHP_EOL;
         }
 
         if (strstr($data['msg'], 'gmt postman') == 'gmt postman') {
