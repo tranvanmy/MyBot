@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0-dev"></a>
+# [0.3.0-dev](https://github.com/tranvanmy/MyBot/compare/v0.2.0-dev...v0.3.0-dev) (2019-01-22)
+
+
+### Features
+
+* Add member service for gmt ([2684689](https://github.com/tranvanmy/MyBot/commit/2684689))
+
+
+
 <a name="0.2.0-dev"></a>
 # [0.2.0-dev](https://github.com/tranvanmy/MyBot/compare/v0.1.0-dev...v0.2.0-dev) (2019-01-22)
 
