@@ -69,7 +69,6 @@ class WebhookController extends Controller
         'gmt' => 'gmt',
         'help' => 'help',
         'vanhoa' => 'member',
-        'js' => 'js'
     ];
 
     protected $adminCommand = [
@@ -86,8 +85,6 @@ class WebhookController extends Controller
      */
     public function handleEvent(Request $request)
     {
-        \Log::error($request->all());
-
         // Get evnet infomation
         $webhookEvent = $request->input('webhook_event');
         $roomId = $webhookEvent['room_id'];
