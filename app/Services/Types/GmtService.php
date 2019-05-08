@@ -92,8 +92,7 @@ Daily Report
             \Log::error($data['msg']);
             $reponse = "[rp aid=$userId to=$roomId-$messId]\n".
             "Mẫu gửi pull của anh đây\n"
-        . '[To:2343554]  [To:3401308] [To:3401286] [To:3542580] [To:3543924] [To:3330082] 
-[info][title]Mọi người review giúp mình pull này với (bow)[/title](*) Title:
+        . '[info][title]Mọi người review giúp mình pull này với (bow)[/title](*) Title:
 (*) Link: [/info]'. PHP_EOL;
         }
 
@@ -125,9 +124,7 @@ Daily Report
      * @return string
      */
     public function extractContent($msg)
-    {
- \Log::error(strstr($content, 'gmt memb121er'));
-    
+    {    
         return $content;
     }
 }
