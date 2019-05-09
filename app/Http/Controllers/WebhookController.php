@@ -91,31 +91,41 @@ class WebhookController extends Controller
         $fromId = $webhookEvent['from_account_id'];
         $messageId = $webhookEvent['message_id'];
 
+        $notReply = ['1272369'];
+        // \Log::error('$messageId');
+        // \Log::error($fromId);
+        // \Log::error('$messageId');
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
         $name = $this->getServiceName($message);
 
-        if (in_array($name, $this->adminCommand)) {
-            $response = ServiceEntry::service($name)
-                ->createResponse([
-                    'fromId' => $fromId,
-                    'roomId' => $roomId,
-                    'msg' => $message,
-                ]);
-            if ($name == 'to') {
-                $roomId = env('TEAM_AN_TRUA_FS');
+        if (!in_array($fromId, $notReply)) {
+            if (in_array($name, $this->adminCommand)) {
+                $response = ServiceEntry::service($name)
+                    ->createResponse([
+                        'fromId' => $fromId,
+                        'roomId' => $roomId,
+                        'msg' => $message,
+                    ]);
+                if ($name == 'to') {
+                    $roomId = env('TEAM_AN_TRUA_FS');
+                }
+            } else {
+                $response = ServiceEntry::service($name)
+                    ->createResponse([
+                        'roomId' => $roomId,
+                        'userId' => $fromId,
+                        'messId' => $messageId,
+                        'msg' => $message,
+                    ]);
             }
-        } else {
-            $response = ServiceEntry::service($name)
-                ->createResponse([
-                    'roomId' => $roomId,
-                    'userId' => $fromId,
-                    'messId' => $messageId,
-                    'msg' => $message,
-                ]);
-        }
 
+            // $this->sendResponse($response, $roomId);
+        } else {
+            $response = '(bow)';
+        }
         $this->sendResponse($response, $roomId);
+
     }
 
     /**
