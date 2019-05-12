@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Services\ServiceEntry;
 use wataridori\ChatworkSDK\ChatworkSDK;
 use wataridori\ChatworkSDK\ChatworkRoom;
@@ -90,42 +91,60 @@ class WebhookController extends Controller
         $roomId = $webhookEvent['room_id'];
         $fromId = $webhookEvent['from_account_id'];
         $messageId = $webhookEvent['message_id'];
-
         $notReply = ['1272369'];
-        // \Log::error('$messageId');
-        // \Log::error($fromId);
-        // \Log::error('$messageId');
+        $work = ['gmt', 'gmt postman', 'gmt api', 'gmt member', 'gmt workflow', 'gmt book', 'gmt git', 'gmt gg',
+                'git staging', 'gmt report', 'gmt pull', 'help', 'pull', 'music', 'weather', 'tat', 'vanhoa', '(tat)', '(tat1)', '(tat2)', '(tat3)', '(tat4)', '(tat5)', ];
         // Generate response
         $message = $this->extractContent($webhookEvent['body']);
+        $convertMessage = trim(substr($message, 8, strlen($message)));
         $name = $this->getServiceName($message);
 
         if (!in_array($fromId, $notReply)) {
-            if (in_array($name, $this->adminCommand)) {
-                $response = ServiceEntry::service($name)
-                    ->createResponse([
-                        'fromId' => $fromId,
-                        'roomId' => $roomId,
-                        'msg' => $message,
-                    ]);
-                if ($name == 'to') {
-                    $roomId = env('TEAM_AN_TRUA_FS');
+            if (in_array($convertMessage, $work) || in_array($name, $work)) {
+                if (in_array($name, $this->adminCommand)) {
+                    $response = ServiceEntry::service($name)
+                        ->createResponse([
+                            'fromId' => $fromId,
+                            'roomId' => $roomId,
+                            'msg' => $message,
+                        ]);
+                    if ($name == 'to') {
+                        $roomId = env('TEAM_AN_TRUA_FS');
+                    }
+                } else {
+                    $response = ServiceEntry::service($name)
+                        ->createResponse([
+                            'roomId' => $roomId,
+                            'userId' => $fromId,
+                            'messId' => $messageId,
+                            'msg' => $message,
+                        ]);
                 }
             } else {
-                $response = ServiceEntry::service($name)
-                    ->createResponse([
-                        'roomId' => $roomId,
-                        'userId' => $fromId,
-                        'messId' => $messageId,
-                        'msg' => $message,
-                    ]);
-            }
+                $client = new Client();
+                $array = [
+                        'lc' => 'vn',
+                        'deviceId' => '',
+                        'bad' => 0,
+                        'txt' => $convertMessage
+                    ];
 
-            // $this->sendResponse($response, $roomId);
+                $result = $client->request('GET', 'http://ghuntur.com/simsim.php', [
+                    'query' => $array
+                ]);
+
+                $simsimi = trim($result->getBody());
+                if ($simsimi == 'Talk with random person: https://play.google.com/store/apps/details?id=www.speak.com') {
+                    $response = '(bow)';
+                } else {
+                    $response = "[rp aid=$fromId to=$roomId-$messageId]\n".$simsimi. PHP_EOL;
+                }
+            }
         } else {
             $response = '(bow)';
         }
-        $this->sendResponse($response, $roomId);
 
+        $this->sendResponse($response, $roomId);
     }
 
     /**
@@ -179,6 +198,6 @@ class WebhookController extends Controller
      */
     protected function extractContent($message)
     {
-        return trim(substr($message, strpos($message, ']')));
+        return trim(substr($message, strpos($message, '] Jarvis')));
     }
 }
