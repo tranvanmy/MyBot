@@ -134,6 +134,16 @@ class WebhookController extends Controller
                 ]);
 
                 $simsimi = trim($result->getBody());
+
+                $simsimi =  str_replace('Símimi', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('símimi', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('Sim', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('sim', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('Simsimi', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('simsimi', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('Simsim', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('simsim', 'Jarvis', $simsimi);
+
                 if ($simsimi == 'Talk with random person: https://play.google.com/store/apps/details?id=www.speak.com') {
                     $response = '(bow)';
                 } else {
