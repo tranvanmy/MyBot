@@ -89,9 +89,12 @@ class WebhookController extends Controller
         // Get evnet infomation
         $webhookEvent = $request->input('webhook_event');
         $roomId = $webhookEvent['room_id'];
-        $fromId = $webhookEvent['from_account_id'];
+
+        $fromId = trim($webhookEvent['from_account_id']);
+
         $messageId = $webhookEvent['message_id'];
-        $notReply = ['1272369'];
+        // anh tung, chi dung, anh dungx, anh quangB, 
+        $notReply = ['1272369', '775460', '764474', '2161732'];
         $work = ['gmt', 'gmt postman', 'gmt api', 'gmt member', 'gmt workflow', 'gmt book', 'gmt git', 'gmt gg',
                 'git staging', 'gmt report', 'gmt pull', 'help', 'pull', 'music', 'weather', 'tat', 'vanhoa', '(tat)', '(tat1)', '(tat2)', '(tat3)', '(tat4)', '(tat5)', ];
         // Generate response
@@ -143,6 +146,17 @@ class WebhookController extends Controller
                 $simsimi =  str_replace('simsimi', 'Jarvis', $simsimi);
                 $simsimi =  str_replace('Simsim', 'Jarvis', $simsimi);
                 $simsimi =  str_replace('simsim', 'Jarvis', $simsimi);
+                $simsimi =  str_replace('con cặc', '***', $simsimi);
+                $simsimi =  str_replace('dm', '***', $simsimi);
+                $simsimi =  str_replace('vl', '***', $simsimi);
+                $simsimi =  str_replace('fuck you', '***', $simsimi);
+                // $simsimi =  str_replace('cứt', '***', $simsimi);
+                // $simsimi =  str_replace('l', '***', $simsimi);
+                $simsimi =  str_replace('dmm', '***', $simsimi);
+                $simsimi =  str_replace('con chó', '***', $simsimi);
+                $simsimi =  str_replace('mày', 'anh', $simsimi);
+                $simsimi =  str_replace('may', 'anh', $simsimi);
+                $simsimi =  str_replace('tao', 'em', $simsimi);
 
                 if ($simsimi == 'Talk with random person: https://play.google.com/store/apps/details?id=www.speak.com') {
                     $response = '(bow)';
