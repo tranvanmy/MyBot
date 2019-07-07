@@ -91,21 +91,21 @@ class WebhookController extends Controller
 
         if ($headerGit && isset($headerGit['x-github-event']) && $headerGit['x-github-event'][0] == 'issue_comment') {
             $this->handleEventGitHub($request->all());
-        } 
+        }
 
             $webhookEvent = $request->input('webhook_event');
             $roomId = $webhookEvent['room_id'];
             $fromId = trim($webhookEvent['from_account_id']);
             $messageId = $webhookEvent['message_id'];
 
-                    \Log::error($messageId);
-            // anh tung, chi dung, anh dungx, anh quangB, 
-            $notReply = ['1272369', '775460', '764474', '2161732'];
-            $work = ['gmt', 'gmt postman', 'gmt api', 'gmt member', 'gmt workflow', 'gmt book', 'gmt git', 'gmt gg',
-                    'git staging', 'gmt report', 'gmt pull', 'help', 'pull', 'music', 'weather', 'tat', 'vanhoa', '(tat)', '(tat1)', '(tat2)', '(tat3)', '(tat4)', '(tat5)', ];
+            // anh tung, chi dung, anh dungx,
+            $notReply = ['1272369', '775460', '764474'];
+            $work = ['gmt', 'gmt postman', 'gmt api', 'gmt member', 'gmt workflow', 'gmt book', 'gmt git', 'gmt gg', 'git staging', 'gmt report', 'gmt pull', 'help', 'pull', 'music', 'weather', 'tat', 'vanhoa', '(tat)', '(tat1)', '(tat2)', '(tat3)', '(tat4)', '(tat5)', 'map' ];
             // Generate response
             $message = $this->extractContent($webhookEvent['body']);
-            $convertMessage = trim(substr($message, 8, strlen($message)));
+            $convertMessage = trim(substr($message, 61, strlen($message)));
+
+            \Log::error($convertMessage);
             $name = $this->getServiceName($message);
 
             if (!in_array($fromId, $notReply)) {
@@ -144,28 +144,28 @@ class WebhookController extends Controller
 
                     $simsimi = trim($result->getBody());
 
-                    $simsimi =  str_replace('Símimi', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('símimi', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('Sim', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('sim', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('Simsimi', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('simsimi', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('Simsim', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('simsim', 'Jarvis', $simsimi);
-                    $simsimi =  str_replace('con cặc', '***', $simsimi);
-                    $simsimi =  str_replace('dm', '***', $simsimi);
-                    $simsimi =  str_replace('vl', '***', $simsimi);
-                    $simsimi =  str_replace('fuck you', '***', $simsimi);
-                    // $simsimi =  str_replace('cứt', '***', $simsimi);
-                    // $simsimi =  str_replace('l', '***', $simsimi);
-                    $simsimi =  str_replace('dmm', '***', $simsimi);
-                    $simsimi =  str_replace('con chó', '***', $simsimi);
-                    $simsimi =  str_replace('mày', 'anh', $simsimi);
-                    $simsimi =  str_replace('may', 'anh', $simsimi);
-                    $simsimi =  str_replace('tao', 'em', $simsimi);
+                    // $simsimi =  str_replace('Símimi', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('símimi', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('Sim', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('sim', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('Simsimi', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('simsimi', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('Simsim', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('simsim', 'Cậu Vàng', $simsimi);
+                    // $simsimi =  str_replace('con cặc', '***', $simsimi);
+                    // $simsimi =  str_replace('dm', '***', $simsimi);
+                    // $simsimi =  str_replace('vl', '***', $simsimi);
+                    // $simsimi =  str_replace('fuck you', '***', $simsimi);
+                    // // $simsimi =  str_replace('cứt', '***', $simsimi);
+                    // // $simsimi =  str_replace('l', '***', $simsimi);
+                    // $simsimi =  str_replace('dmm', '***', $simsimi);
+                    // $simsimi =  str_replace('con chó', '***', $simsimi);
+                    // $simsimi =  str_replace('mày', 'anh', $simsimi);
+                    // $simsimi =  str_replace('may', 'anh', $simsimi);
+                    // $simsimi =  str_replace('tao', 'em', $simsimi);
 
                     if ($simsimi == 'Talk with random person: https://play.google.com/store/apps/details?id=www.speak.com') {
-                        $response = '(bow)';
+                        $response = $convertMessage;
                     } else {
                         $response = "[rp aid=$fromId to=$roomId]\n".$simsimi. PHP_EOL;
                     }
@@ -179,8 +179,8 @@ class WebhookController extends Controller
 
 
     public function handleEventGitHub($gitHub) {
-        $idChatwork = ['2359460', '2359460', '1807071', '2559169', '2559207', '3401286', '3542580', '3543924', '3525316', '775460', '2684729', '2296305', '2357269'];
-        $nameGitHub = ['tranvanmy', 'mytv01-1146', 'quynhnt-0892', 'quandt-1233', 'sunh-1294', 'quynt-1571', 'vietnc-1636', 'ngocntb-0799', 'thangcx-0794', 'dunghtt-0080', 'nghiapt-1099', 'HoangTien339', 'tuanlabophp'];
+        $idChatwork = ['2359460', '2359460', '1807071', '2559169', '2559207', '3401286', '3542580', '3543924', '3525316', '775460', '2684729', '2135875', '3542426', '3001967'];
+        $nameGitHub = ['tranvanmy', 'mytv01-1146', 'quynhnt-0892', 'quandt-1233', 'sunh-1294', 'quynt-1571', 'vietnc-1636', 'ngocntb-0799', 'thangcx-0794', 'dunghtt-0080', 'nghiapt-1099', 'hieunv-0998', 'quannt-1637', 'ngoc'];
         $linkComment =  $gitHub['comment']['html_url'];
         $idReply = null;
         $idComment = null;
@@ -200,7 +200,7 @@ class WebhookController extends Controller
         if (in_array($idReply, $girl)) {
             $start = 'Chị đẹp ơi';
         }
-        $roomId = '138295133';
+        $roomId = '197160731';
         $body = $start.' ,có anh [To:'.$idComment.']comment pull của anh ạ (bow)'.PHP_EOL.$linkComment; 
         $response = "[rp aid=$idReply to=$roomId]\n".$body. PHP_EOL;
 
@@ -221,7 +221,7 @@ class WebhookController extends Controller
     {
         try {
             
-            ChatworkSDK::setApiKey('7ddbd71d6a0f674a0c1fdaa5faaadbfd');
+            ChatworkSDK::setApiKey('d859d016032f340ca8b720c457f70aba');
             $room = new ChatworkRoom($roomId);
             $room->sendMessage($response);
 
