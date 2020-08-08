@@ -42,9 +42,11 @@ class LunchNotify extends Command
     public function handle()
     {
         try {
-            ChatworkSDK::setApiKey(env('CHATWORK_API_KEY'));
-            $room = new ChatworkRoom(env('TEAM_AN_TRUA_FS'));
-            $room->sendMessage($this->message);
+            ChatworkSDK::setApiKey(env('BOOT_KEY'));
+            $room = new ChatworkRoom(env('ROOM_ID_NOTIFICATION'));
+            $noti = "[To:5085124] [To:5085113] [To:5102249] [To:5085162] [To:5085165]
+Mọi người nhớ báo cáo trước khi về nhé.";
+            $room->sendMessage($noti);
         } catch (\Exception $e) {
             logger($e);
             return false;

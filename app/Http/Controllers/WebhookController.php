@@ -98,17 +98,13 @@ class WebhookController extends Controller
             $fromId = trim($webhookEvent['from_account_id']);
             $messageId = $webhookEvent['message_id'];
 
-            // anh tung, chi dung, anh dungx,
-            $notReply = ['1272369', '775460', '764474'];
             $work = ['gmt', 'gmt postman', 'gmt api', 'gmt member', 'gmt workflow', 'gmt book', 'gmt git', 'gmt gg', 'git staging', 'gmt report', 'gmt pull', 'help', 'pull', 'music', 'weather', 'tat', 'vanhoa', '(tat)', '(tat1)', '(tat2)', '(tat3)', '(tat4)', '(tat5)', 'map' ];
             // Generate response
             $message = $this->extractContent($webhookEvent['body']);
             $convertMessage = trim(substr($message, 61, strlen($message)));
 
-            \Log::error($convertMessage);
             $name = $this->getServiceName($message);
 
-            if (!in_array($fromId, $notReply)) {
                 if (in_array($convertMessage, $work) || in_array($name, $work)) {
                     if (in_array($name, $this->adminCommand)) {
                         $response = ServiceEntry::service($name)
@@ -130,19 +126,26 @@ class WebhookController extends Controller
                             ]);
                     }
                 } else {
-                    $client = new Client();
-                    $array = [
-                            'lc' => 'vn',
-                            'deviceId' => '',
-                            'bad' => 0,
-                            'txt' => $convertMessage
-                        ];
-
-                    $result = $client->request('GET', 'http://ghuntur.com/simsim.php', [
-                        'query' => $array
+                    $response = ServiceEntry::service($name)
+                    ->createResponse([
+                        'roomId' => $roomId,
+                        'userId' => $fromId,
+                        'messId' => $messageId,
+                        'msg' => $message,
                     ]);
+                    // $client = new Client();
+                    // $array = [
+                    //         'lc' => 'vn',
+                    //         'deviceId' => '',
+                    //         'bad' => 0,
+                    //         'txt' => $convertMessage
+                    //     ];
 
-                    $simsimi = trim($result->getBody());
+                    // $result = $client->request('GET', 'http://ghuntur.com/simsim.php', [
+                    //     'query' => $array
+                    // ]);
+
+                    // $simsimi = trim($result->getBody());
 
                     // $simsimi =  str_replace('Símimi', 'Cậu Vàng', $simsimi);
                     // $simsimi =  str_replace('símimi', 'Cậu Vàng', $simsimi);
@@ -164,15 +167,12 @@ class WebhookController extends Controller
                     // $simsimi =  str_replace('may', 'anh', $simsimi);
                     // $simsimi =  str_replace('tao', 'em', $simsimi);
 
-                    if ($simsimi == 'Talk with random person: https://play.google.com/store/apps/details?id=www.speak.com') {
-                        $response = $convertMessage;
-                    } else {
-                        $response = "[rp aid=$fromId to=$roomId]\n".$simsimi. PHP_EOL;
-                    }
+                    // if ($simsimi == 'Talk with random person: https://play.google.com/store/apps/details?id=www.speak.com') {
+                    //     $response = $convertMessage;
+                    // } else {
+                    //     $response = "[rp aid=$fromId to=$roomId]\n".$simsimi. PHP_EOL;
+                    // }
                 }
-            } else {
-                $response = '(bow)';
-            }
 
             $this->sendResponse($response, $roomId);
     }
@@ -220,8 +220,7 @@ class WebhookController extends Controller
     protected function sendResponse($response, $roomId)
     {
         try {
-            
-            ChatworkSDK::setApiKey('d859d016032f340ca8b720c457f70aba');
+            ChatworkSDK::setApiKey(env('BOOT_KEY'));
             $room = new ChatworkRoom($roomId);
             $room->sendMessage($response);
 

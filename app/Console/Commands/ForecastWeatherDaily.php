@@ -48,8 +48,8 @@ class ForecastWeatherDaily extends Command
             $forecastWeather = $this->extractTodayWeather($forecastWeather);
 
             // Send message
-            ChatworkSDK::setApiKey(env('CHATWORK_API_KEY'));
-            $room = new ChatworkRoom(env('TEAM_AN_TRUA_FS'));
+            ChatworkSDK::setApiKey(env('BOOT_KEY'));
+            $room = new ChatworkRoom(env('ROOM_ID_NOTIFICATION'));
             $room->sendMessage($this->constructMessage($forecastWeather));
         } catch (\Exception $e) {
             logger($e);
@@ -94,8 +94,10 @@ class ForecastWeatherDaily extends Command
      */
     protected function constructMessage($forecastWeather)
     {
-        return '[toall] Dự báo thời tiết ngày ' . Carbon::today()->format('d/m/Y') . ':' . PHP_EOL
+        return 'TO ALL >>> ' . PHP_EOL
+            . 'Dự báo thời tiết ngày ' . Carbon::today()->format('d/m/Y') . ':' . PHP_EOL
             . '- Nhiệt độ: ' . $forecastWeather['min_temp'] . ' đến ' . $forecastWeather['max_temp'] . ' độ C' . PHP_EOL
-            . '- Thời tiết: ' . $forecastWeather['desc'];
+            . '- Thời tiết: ' . $forecastWeather['desc'] . PHP_EOL
+            . '(*) Chúc mọi người có một ngày làm việc thật tốt nhé.';
     }
 }
